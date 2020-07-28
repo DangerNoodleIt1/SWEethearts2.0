@@ -163,11 +163,15 @@ const Explore = (props) => {
       </Row>
     </Container>
   );
+  
 
   return response.length === 0 ? (
     <Spinner />
   ) : (
-      <Fragment> {explorePage} </Fragment>
+      <Fragment> 
+        {explorePage} 
+        
+      </Fragment>
     );
 };
 
