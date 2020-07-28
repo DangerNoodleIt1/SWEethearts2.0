@@ -8,6 +8,7 @@ ideaController.getIdeas = (req, res, next) => {
   /* query text will join tables for ideas, idea_tech_stacks, and tech_stacks
   then aggregate the tech stack names into an array
   */
+
   const queryText = `SELECT Ideas.*, array_agg(tech_stacks.name) AS techstacks FROM Ideas 
     JOIN Idea_tech_stacks ON Idea_tech_stacks.idea_id = Ideas.idea_id 
     JOIN tech_stacks ON tech_stacks.tech_id=Idea_tech_stacks.tech_id 

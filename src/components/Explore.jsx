@@ -164,7 +164,7 @@ const Explore = (props) => {
     </Container>
   );
 
-  return response.length === 1 ? (
+  return response.length === 0 ? (
     <Spinner />
   ) : (
       <Fragment> {explorePage} </Fragment>
