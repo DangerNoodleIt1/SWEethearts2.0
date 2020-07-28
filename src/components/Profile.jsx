@@ -22,7 +22,7 @@ const Profile = (props) => {
   // Initialize creator name-to-display to currently authenticated user
   let creatorName = ideaCreator;
 
-  // Accessing Profile from Idea Page?
+  // Accessing Profile from Idea Page. 
   if (ideaCreator) {
     // If logged-in user is _not_ clicking on their own profile picture, 
     // RESET name-to-display to that of the User being clicked by logged-in User
