@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { Container, Col, Row, Button } from 'react-bootstrap';
 import Spinner from './Spinner';
 import '../styles/user-profile.scss';
+import { Link } from 'react-router-dom';
+import {withRouter} from "react-router"
 
 const Profile = (props) => {
   /*
@@ -9,24 +11,24 @@ const Profile = (props) => {
    * creatorUsername (possibly) passed in from IdeaPage
    * authStatus always passed in from App
    */
+  console.log(props)
+  console.log("testing user " + props.location.state.ideaCreator)
 
-  console.log("testing user " + props.route)
-
-  let { ideaCreator, authStatus } = props;
+  let { ideaCreator, authStatus } = props.location.state;
 
   // Destructure currently authenticated user's username from authStatus
   let { username } = authStatus;
 
   // Initialize creator name-to-display to currently authenticated user
-  let creatorName = username;
+  let creatorName = ideaCreator;
 
   // Accessing Profile from Idea Page?
   if (ideaCreator) {
     // If logged-in user is _not_ clicking on their own profile picture, 
     // RESET name-to-display to that of the User being clicked by logged-in User
-    if (loggedInUsername !== ideaCreator) {
-      creatorName = ideaCreator;
-    }
+    // if (loggedInUsername !== ideaCreator) {
+    //   creatorName = ideaCreator;
+    // }
   }
   // Set up user data to display on Profile
   const [userData, setUserData] = useState({});
@@ -89,4 +91,4 @@ const Profile = (props) => {
   );
 }
 
-export default Profile;
+export default withRouter(Profile);
