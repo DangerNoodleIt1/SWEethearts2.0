@@ -8,8 +8,10 @@ import NavigateBar from './NavigateBar';
 import IdeaPage from './IdeaPage';
 import SubmitIdea from './SubmitIdea';
 import Chat from './Chat'
+import JoinChat from './JoinChat'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+
 
 
 const App = () => {
@@ -62,6 +64,11 @@ const App = () => {
             exact
             path="/profile"
             render={() => <Profile authStatus={authStatus} />}
+          />
+          <Route
+            exact
+            path="/joinchat"
+            render={() => <JoinChat authStatus={authStatus} />}
           />
           <Route
             exact

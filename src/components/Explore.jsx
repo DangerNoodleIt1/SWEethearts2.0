@@ -119,7 +119,7 @@ const Explore = (props) => {
           </NavLink>
           <NavLink
             to={{
-              pathname: '/chat',
+              pathname: '/joinchat',
               state: {
                 idea_id: idea.idea_id,
                 authStatus,

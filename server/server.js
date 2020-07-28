@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path'); // for chat
 const http = require('http'); // for chat
-const app = express();
+const app = express(); 
 const socketio = require('socket.io');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
@@ -21,7 +21,12 @@ const PORT = 3000;
 
 // socket
 const server = http.createServer(app);
-const io = socketio(server); // Socket.io
+const io = socketio(server); // Socket.io -> make server working
+
+// ! Implenting web sockets
+io.on('connection', (socket) => {
+  console.log("We Have a new connection!!!")
+})
 
 /*
  * Handle parsing request body
@@ -48,10 +53,7 @@ app.use('/api/profile', profileRouter);
 
 
 
-// ! Implenting web sockets
-io.on('connection', (socket) => {
-  console.log("We Have a new connection!!!")
-})
+
 
 // globoal error handler
 app.use((err, req, res, next) => {
@@ -68,7 +70,7 @@ app.use((err, req, res, next) => {
 /*
  * Start server
  */
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 });
 
