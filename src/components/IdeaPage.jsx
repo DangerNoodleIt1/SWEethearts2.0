@@ -85,8 +85,8 @@ const IdeaPage = (props) => {
                 {/* TODO:CONVERT THE PROFILE PIC IN SCHEMA TO STRING */}
                 <NavLink
                   to='/profile'
-                   ideacreator = {creator_username}
-                   authstatus = {authStatus}
+                  ideacreator = {creator_username}
+                  authstatus = {authStatus}
                 >
                   <img className="prof-pic" src={profilepic} />
                   {creator_username} (creator)

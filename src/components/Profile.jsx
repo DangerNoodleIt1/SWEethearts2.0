@@ -10,7 +10,7 @@ const Profile = (props) => {
    * authStatus always passed in from App
    */
 
-  console.log("testing user " + props)
+  console.log("testing user " + props.route)
 
   let { ideaCreator, authStatus } = props;
 
@@ -22,7 +22,6 @@ const Profile = (props) => {
 
   // Accessing Profile from Idea Page?
   if (ideaCreator) {
-    console.log('idea creator is : ', ideacreator)
     // If logged-in user is _not_ clicking on their own profile picture, 
     // RESET name-to-display to that of the User being clicked by logged-in User
     if (loggedInUsername !== ideaCreator) {
