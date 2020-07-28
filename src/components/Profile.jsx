@@ -40,8 +40,8 @@ const Profile = (props) => {
 
   const getUser = async () => {
     // Get all existing user data, sending username as a parameter
-    // const res = await fetch(`/api/profile/${creatorName}`);
-    const res = await fetch(`/api/profile/seungho`);
+    const res = await fetch(`/api/profile/${creatorName}`);
+    // const res = await fetch(`/api/profile/seungho`);
 
     // Expect in response an object with all User table column properties
     const userTableData = await res.json();
