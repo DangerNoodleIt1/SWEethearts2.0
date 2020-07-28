@@ -17,8 +17,8 @@ const Explore = (props) => {
       who: '',
       creator_username: '',
       image: '',
-      techstacks: [],
-    },
+      techstacks: []
+    }
   ]);
 
   const [query, setQuery] = useState('');
@@ -81,13 +81,13 @@ const Explore = (props) => {
   //check if user wants to filter for tech, otherwise just return sortedIdeas as-is
   const filteredIdeas = techFilter.length
     ? sortedIdeas.filter((idea) => {
-      //if idea has tech that is inside techFilter, then include that idea
-      for (let i = 0; i < techFilter.length; i++) {
-        const selectedTech = techFilter[i];
-        if (!idea.techstacks.includes(selectedTech)) return false;
-      }
-      return true;
-    })
+        //if idea has tech that is inside techFilter, then include that idea
+        for (let i = 0; i < techFilter.length; i++) {
+          const selectedTech = techFilter[i];
+          if (!idea.techstacks.includes(selectedTech)) return false;
+        }
+        return true;
+      })
     : sortedIdeas;
 
   const generateBoxes = filteredIdeas.map((idea, idx) => {
@@ -109,8 +109,8 @@ const Explore = (props) => {
               pathname: '/idea',
               state: {
                 idea_id: idea.idea_id,
-                authStatus,
-              },
+                authStatus
+              }
             }}
           >
             <Button variant="primary"> Find out more </Button>
@@ -164,11 +164,11 @@ const Explore = (props) => {
     </Container>
   );
 
-  return response.length === 1 ? (
+  return response.length === 0 ? (
     <Spinner />
   ) : (
-      <Fragment> {explorePage} </Fragment>
-    );
+    <Fragment> {explorePage} </Fragment>
+  );
 };
 
 export default Explore;
