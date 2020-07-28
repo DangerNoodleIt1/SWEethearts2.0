@@ -90,6 +90,8 @@ const Explore = (props) => {
     })
     : sortedIdeas;
 
+
+  // ! generates the actual boxes
   const generateBoxes = filteredIdeas.map((idea, idx) => {
     return (
       <Card key={idx} style={{ width: '20rem' }} className="m-3">
@@ -115,6 +117,18 @@ const Explore = (props) => {
           >
             <Button variant="primary"> Find out more </Button>
           </NavLink>
+          <NavLink
+            to={{
+              pathname: '/chat',
+              state: {
+                idea_id: idea.idea_id,
+                authStatus,
+              },
+            }}
+          >
+            <Button variant="secondary"> Message </Button>
+          </NavLink>
+          
         </Card.Body>
       </Card>
     );
