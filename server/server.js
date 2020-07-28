@@ -1,7 +1,8 @@
 const express = require('express');
-const path = require('path');
-
+const path = require('path'); // for chat
+const http = require('http'); // for chat
 const app = express();
+const socketio = require('socket.io');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
@@ -17,6 +18,10 @@ const passport = require('passport');
 initializePassport(passport);
 require('dotenv').config();
 const PORT = 3000;
+
+// socket
+const server = http.createServer(app);
+const io = socketio(server); // Socket.io
 
 /*
  * Handle parsing request body
@@ -39,6 +44,14 @@ app.use('/api/signup', signUpRouter);
 app.use('/api/explore', exploreRouter);
 app.use('/api/submit', submitRouter);
 app.use('/api/profile', profileRouter);
+
+
+
+
+// ! Implenting web sockets
+io.on('connection', (socket) => {
+  console.log("We Have a new connection!!!")
+})
 
 // globoal error handler
 app.use((err, req, res, next) => {
