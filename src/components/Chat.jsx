@@ -6,8 +6,6 @@ import '../styles/login-signup.scss';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import { Form, Button } from 'react-bootstrap';
 
-import io from 'socket.io-client';
-// const socket = io();
 
 
 
@@ -15,9 +13,7 @@ import io from 'socket.io-client';
 
 const Chat = (props) => {
 
-  useEffect(() => {
-    socket = io('localhost:3000');
-  })
+
  
   return (
     <div className="login-container">
