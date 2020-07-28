@@ -9,6 +9,9 @@ const Profile = (props) => {
    * creatorUsername (possibly) passed in from IdeaPage
    * authStatus always passed in from App
    */
+
+  console.log("testing user " + props.ideaCreator)
+
   let { ideaCreator, authStatus } = props;
 
   // Destructure currently authenticated user's username from authStatus
@@ -36,7 +39,9 @@ const Profile = (props) => {
 
   const getUser = async () => {
     // Get all existing user data, sending username as a parameter
-    const res = await fetch(`/api/profile/${creatorName}`);
+    // const res = await fetch(`/api/profile/${creatorName}`);
+    const res = await fetch(`/api/profile/seungho`);
+
     // Expect in response an object with all User table column properties
     const userTableData = await res.json();
     setUserData(userTableData);
@@ -56,13 +61,15 @@ const Profile = (props) => {
    *     Same page without edit button functionality (READ-ONLY)
   */
 
+  // if there is no userData, then return the loader
   if (!Object.keys(userData).length) {
     return <Spinner />;
   }
-  else if (userData.err) {
+  else if (userData.err) { // if error return error
     return <Container>Could not load user</Container>;
   }
 
+  // if there is the user return all data associated
   return (
     <Container id='userProfileContainer'>
       <Row className='mb-4' id='row1'>
