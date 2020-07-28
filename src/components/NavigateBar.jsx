@@ -3,15 +3,25 @@ import {
 	Navbar,
 	Nav /* Form, FormControl, Button, Container */,
 } from 'react-bootstrap';
+import '../styles/navigateBar.scss';
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
 
 const NavigateBar = () => {
 	return (
-		<Navbar bg="primary" variant="dark" sticky="top">
+		<Navbar className="color-nav" variant="light" sticky="top">
 			{/* Leftside Nav Logo/Link */}
 			{/* TODO: Point this href to `/explore` if User is authenticated */}
 			<Link to="/">
-				<Navbar.Brand>Scratch Project</Navbar.Brand>
+				<Navbar.Brand>
+					<img
+						src="https://lh3.googleusercontent.com/proxy/j6HcrHgt5cNcPTvZml7GPHb0br479NLyNnyxEed1uPrrKYPSeGNojpFSfevmDyx12B6vn0K7mihZLttFU1FmeT8pmUHQ8E_Rq0WVFhQTLPUmcyDp-vjYSg"
+						width="30"
+						height="30"
+						className="d-inline-block align-top"
+						alt="React Bootstrap logo"
+					/>
+				</Navbar.Brand>
 			</Link>
 			{/* Rightside Nav Links */}
 			{/* Set class for Login and Signup button Nav item to `margin-left: auto;`*/}
