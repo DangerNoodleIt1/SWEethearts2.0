@@ -174,7 +174,7 @@ ideaController.updateViewCount = async (req, res, next) => {
     const queryText = `UPDATE Ideas SET view_count = view_count + 1 WHERE idea_id=${id}`;
 
     const viewCount = await model.query(queryText);
-    console.log('VIEW COUNT CONTROLLER: ', viewCount);
+    // console.log('VIEW COUNT CONTROLLER: ', viewCount);
     return next();
   } catch (err) {
     return next({
