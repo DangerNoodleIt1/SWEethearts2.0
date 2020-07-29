@@ -11,13 +11,13 @@ router.get(
   techController.getTechs,
   (req, res) => {
     // console.log('res.locals.ideas', res.locals.ideas);
-    res.json([res.locals.ideas, res.locals.techs]);
+    res.status(200).json([res.locals.ideas, res.locals.techs]);
   }
 );
 
 router.get('/:ideaID', ideaController.getOneIdea, (req, res) => {
-  console.log('res.locals.idea', res.locals.idea);
-  res.json(res.locals.idea);
+  // console.log('res.locals.idea', res.locals.idea);
+  res.status(200).res.json(res.locals.idea);
 });
 
 module.exports = router;

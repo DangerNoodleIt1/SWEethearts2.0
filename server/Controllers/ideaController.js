@@ -168,4 +168,21 @@ ideaController.getOneIdea = async (req, res, next) => {
   }
 };
 
+ideaController.updateViewCount = async (req, res, next) => {
+  const id = req.params.ideaID;
+  try {
+    const queryText = `UPDATE Ideas SET view_count = view_count + 1 WHERE idea_id=${id}`;
+
+    const viewCount = await model.query(queryText);
+    //res.locals.views {}
+    return next();
+  } catch (err) {
+    return next({
+      log: `error occurred at updateViewCount middleware. error message is: ${err}`,
+      status: 400,
+      message: { err: 'An error occurred' }
+    });
+  }
+};
+
 module.exports = ideaController;
