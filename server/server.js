@@ -31,7 +31,12 @@ io.on('connection', (socket) => {
   // socket.on will listen for events (emit 'join')
   socket.on('join' , ({name, room }) => { // get data from the client to server
     console.log(name,room);
+  });
+
+  socket.on('disconnect' , () => {
+    console.log('User had left!!!');
   })
+
 
 })
 

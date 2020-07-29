@@ -15,17 +15,19 @@ const Chat = ({location}) => {
   // UseEffect occurs on component did mount and update
   useEffect(() => {
     const {name, room} = queryString.parse(location.search)
-
     socket = io('localhost:3000');
-
+    // setting the name and the room
     setName(name);
     setRoom(room)
-
     console.log(socket)
-
     // Use socket emit 
-    socket.emit('join', {name, room});
+    socket.emit('join', {name, room}); // same as name: name. Sends name and room to server
 
+    return () => {
+      socket.emit('disconnect');
+
+      socket.off();
+    }
   }, ['localhost:3000', location.search]) // useEffect will trigger when values in array update
 
 
