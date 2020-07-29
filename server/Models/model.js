@@ -4,7 +4,7 @@ require('dotenv').config();
 const PG_URI = process.env.elephantURI; // comes from .env file
 
 const pool = new Pool({
-	connectionString: PG_URI,
+	connectionString: PG_URI, // connecting database
 });
 
 module.exports = {

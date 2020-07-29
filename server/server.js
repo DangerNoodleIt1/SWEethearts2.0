@@ -27,19 +27,16 @@ const io = socketio(server); // Socket.io -> make server working
 
 // ! Implementing web sockets
 io.on('connection', (socket) => {
+  // TODO: Make the connection to the database and load in data relevant to room
+
   console.log("We Have a new connection!!!")
 
   // socket.on will listen for events (emit 'join')
   socket.on('join' , ({name, room }, callback) => { // get data from the client to server
     const {error, user} = addUser({id: socket.id, name, room}) // returns either error or a user
-
-
     if(error) return callback(error)
-
-    // ! socket built in methods
     socket.emit('message' , {user: 'admin', text: `${user.name}, welcome to the room ${user.room}`});
     socket.broadcast.to(user.room).emit('message', { user: 'admin' , text: `${user.name}, has joined`})
-
     socket.join(user.room);
     callback();
   });
@@ -51,6 +48,9 @@ io.on('connection', (socket) => {
 
     io.to(user.room).emit('message', {user: user.name, text: message})
 
+    // TODO: SEND THE MESSAGE TO THE DATA BASE TO user.room with the user.name and the message
+
+
     callback()
   });
 
@@ -59,6 +59,8 @@ io.on('connection', (socket) => {
   })
 
 })
+
+
 
 
 /*
