@@ -3,6 +3,9 @@ import { Container, Col, Row, Form, Card, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import Spinner from './Spinner';
+import '../styles/explore.scss';
+
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const Explore = (props) => {
   const { authStatus } = props;
@@ -52,7 +55,7 @@ const Explore = (props) => {
   const generateTech = techStack.map((tech, idx) => {
     return (
       <Form key={idx}>
-        <div key="checkbox" className="mb-2 mt-2 ml-3">
+        <div key="checkbox" className="mb-2 mt-2 ml-2">
           <Form.Check type="checkbox">
             <Form.Check.Input
               type="checkbox"
@@ -92,8 +95,12 @@ const Explore = (props) => {
 
   const generateBoxes = filteredIdeas.map((idea, idx) => {
     return (
-      <Card key={idx} style={{ width: '20rem' }} className="m-3">
-        <Card.Img variant="top" src={idea.image} />
+      <Card
+        key={idx}
+        style={{ width: '20rem' }}
+        className="m-3 zoom card-shadow"
+      >
+        <Card.Img className="card-img-top" src={idea.image} />
         <Card.Body>
           <Card.Title>{idea.name}</Card.Title>
           <Card.Text style={{ fontWeight: 300 }}>{idea.description}</Card.Text>
