@@ -1,0 +1,25 @@
+body {
+	background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+}
+.color-button {
+	color: #88acaf;
+}
+
+.color-bg {
+	background-color: #f4e6e6;
+}
+
+.card-shadow:hover {
+	box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253);
+}
+
+.zoom {
+	padding: 10px;
+	transition: transform 0.2s; /* Animation */
+	width: 300px;
+	height: max;
+}
+
+.zoom:hover {
+	transform: scale(1.1);
+}
