@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 const NavigateBar = (props) => {
-	console.log('here ' + props.authStatus.username);
+	// make a conditional -- if props.authStatus.username exists, display one set, else another set
 	return (
 		<Navbar className="color-nav" variant="light" sticky="top">
 			{/* Leftside Nav Logo/Link */}

@@ -21,6 +21,7 @@ const Explore = (props) => {
 			creator_username: '',
 			image: '',
 			techstacks: [],
+			view_count: 0,
 		},
 	]);
 
@@ -103,6 +104,9 @@ const Explore = (props) => {
 				<Card.Img className="card-img-top" src={idea.image} />
 				<Card.Body>
 					<Card.Title>{idea.name}</Card.Title>
+					<Card.Text style={{ fontWeight: 200 }}>
+						Idea Views: {idea.view_count}
+					</Card.Text>
 					<Card.Text style={{ fontWeight: 300 }}>{idea.description}</Card.Text>
 					<Card.Text style={{ fontSize: 12, fontStyle: 'italic' }}>
 						<span style={{ fontSize: 13, fontWeight: 'bold' }}>
@@ -123,16 +127,16 @@ const Explore = (props) => {
 						<Button variant="primary"> Find out more </Button>
 					</NavLink>
 					<NavLink
-            to={{
-              pathname: '/joinchat',
-              state: {
-                idea_id: idea.idea_id,
-                authStatus,
-              },
-            }}
-          >
-            <Button variant="secondary"> Message </Button>
-          </NavLink>
+						to={{
+							pathname: '/joinchat',
+							state: {
+								idea_id: idea.idea_id,
+								authStatus,
+							},
+						}}
+					>
+						<Button variant="secondary"> Message </Button>
+					</NavLink>
 				</Card.Body>
 			</Card>
 		);

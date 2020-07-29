@@ -76,6 +76,16 @@ const Profile = (props) => {
 			<Row className="mb-4" id="row1">
 				<h3>{creatorName}'s Developer Profile</h3>
 				<img id="profilePic" src={userData.profilepic} />
+				<Link
+					to={{
+						pathname: '/editprofile',
+						state: {
+							authStatus: authStatus,
+						},
+					}}
+				>
+					<button>Edit Profile</button>
+				</Link>
 			</Row>
 			<Row id="row2">
 				<Col className="cardHeader" id="bioCard">
