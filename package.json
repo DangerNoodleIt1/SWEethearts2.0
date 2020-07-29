@@ -32,6 +32,7 @@
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",
     "css-loader": "^3.6.0",
+    "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.4",
@@ -65,8 +66,11 @@
     "react-bootstrap-typeahead": "^5.1.0",
     "react-chat-window": "^1.2.1",
     "react-dom": "^16.13.1",
+    "react-emoji": "^0.5.0",
     "react-hot-loader": "^4.12.21",
     "react-router-dom": "^5.2.0",
+    "react-scroll": "^1.8.0",
+    "react-scroll-to-bottom": "^3.0.0",
     "socket.io": "^2.3.0"
   }
 }

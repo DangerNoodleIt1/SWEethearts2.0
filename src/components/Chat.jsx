@@ -5,6 +5,11 @@ import queryString from 'query-string'; // retrieving data from the url
 import io from 'socket.io-client/dist/socket.io'
 import {withRouter} from "react-router"
 
+
+// Importing components
+import InfoBar from './InfoBar'
+import Messages from './Messages'
+
 let socket;
 
 const Chat = ({location}) => {
@@ -59,12 +64,13 @@ const Chat = ({location}) => {
 
   // ! JSX
   return (
-    <div>
-      <input 
-        value = {message} 
-        onChange={(event) => setMessage(event.target.value)}
-        onKeyPress={(event) => event.key === 'Enter' ? sendMessage(event) : null}
-      />  
+<div className="outerContainer">
+      <div className="container">
+          <InfoBar room={room} />
+          <Messages messages={messages} name={name} />
+          {/* <Input message={message} setMessage={setMessage} sendMessage={sendMessage} /> */}
+      </div>
+      {/* <TextContainer users={users}/> */}
     </div>
   );
 };
