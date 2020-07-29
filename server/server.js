@@ -30,13 +30,25 @@ io.on('connection', (socket) => {
 
   // socket.on will listen for events (emit 'join')
   socket.on('join' , ({name, room }) => { // get data from the client to server
-    console.log(name,room);
+    console.log(name,room); // logging the user's name and the room
+
+    // ! socket built in methods
+    socket.emit('message' , {user: 'admin', text: `${name}, welcome to the room ${room}`});
+    socket.broadcast.to(room).emit('message', { user: 'admin' , text: `${name}, has joined`})
+
+    // callback()
+  });
+
+
+  socket.on('sendMessage', (message, callback) => {
+    const user = getUser(socket.id) // specific instance of the user's id
+
+      io.to(room).emit('message', {user: name, text: message})
   });
 
   socket.on('disconnect' , () => {
     console.log('User had left!!!');
   })
-
 
 })
 

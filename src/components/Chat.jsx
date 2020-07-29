@@ -11,8 +11,11 @@ const Chat = ({location}) => {
 
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);  // this stores all the messages in an array in state
 
-  // UseEffect occurs on component did mount and update
+
+  // UseEffect for user joining the room
   useEffect(() => {
     const {name, room} = queryString.parse(location.search)
     socket = io('localhost:3000');
@@ -20,7 +23,7 @@ const Chat = ({location}) => {
     setName(name);
     setRoom(room)
     console.log(socket)
-    // Use socket emit 
+
     socket.emit('join', {name, room}); // same as name: name. Sends name and room to server
 
     return () => {
@@ -30,6 +33,12 @@ const Chat = ({location}) => {
     }
   }, ['localhost:3000', location.search]) // useEffect will trigger when values in array update
 
+  // UseEffect for user sending a message
+  useEffect(() => {
+    socket.on('message', (message) => {
+
+    })
+  })
 
   return (
     <h1>Chat</h1>
