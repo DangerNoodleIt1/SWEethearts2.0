@@ -9,6 +9,8 @@ import {withRouter} from "react-router"
 // Importing components
 import InfoBar from './InfoBar'
 import Messages from './Messages'
+import Input from './Input'
+import TextContainer from './TextContainer'
 
 let socket;
 
@@ -68,8 +70,9 @@ const Chat = ({location}) => {
       <div className="container">
           <InfoBar room={room} />
           <Messages messages={messages} name={name} />
-          {/* <Input message={message} setMessage={setMessage} sendMessage={sendMessage} /> */}
+          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
+      {/* <TextContainer/> */}
       {/* <TextContainer users={users}/> */}
     </div>
   );
