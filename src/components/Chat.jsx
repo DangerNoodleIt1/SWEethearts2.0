@@ -52,7 +52,7 @@ const Chat = ({location}) => {
   }, [messages])
 
 
-  // function for sending message
+  // ! function for sending message
   const sendMessage = (event) => {
     event.preventDefault();
     if (message) {
@@ -62,8 +62,6 @@ const Chat = ({location}) => {
 
   console.log(message)
   console.log(messages)
-
-
 
 
   // ! JSX
