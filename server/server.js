@@ -23,10 +23,18 @@ const PORT = 3000;
 const server = http.createServer(app);
 const io = socketio(server); // Socket.io -> make server working
 
-// ! Implenting web sockets
+
+// ! Implementing web sockets
 io.on('connection', (socket) => {
   console.log("We Have a new connection!!!")
+
+  // socket.on will listen for events (emit 'join')
+  socket.on('join' , ({name, room }) => { // get data from the client to server
+    console.log(name,room);
+  })
+
 })
+
 
 /*
  * Handle parsing request body

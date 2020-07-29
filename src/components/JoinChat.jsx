@@ -19,7 +19,6 @@ const JoinChat = () => {
       <Link onClick = {event => (!name || !room) ? event.preventDefault() : null } to = {`/chat?name=${name}&room=${room}`}>
         <button>Join Chat</button>
       </Link>
-
     </div>
     
   )
