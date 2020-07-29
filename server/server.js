@@ -20,6 +20,7 @@ require('dotenv').config();
 const PORT = 3000;
 
 // socket
+const {addUser, removeUser, getUser, getUsersInRoom} = require('./users')
 const server = http.createServer(app);
 const io = socketio(server); // Socket.io -> make server working
 
@@ -29,21 +30,28 @@ io.on('connection', (socket) => {
   console.log("We Have a new connection!!!")
 
   // socket.on will listen for events (emit 'join')
-  socket.on('join' , ({name, room }) => { // get data from the client to server
-    console.log(name,room); // logging the user's name and the room
+  socket.on('join' , ({name, room }, callback) => { // get data from the client to server
+    const {error, user} = addUser({id: socket.id, name, room}) // returns either error or a user
+
+
+    if(error) return callback(error)
 
     // ! socket built in methods
-    socket.emit('message' , {user: 'admin', text: `${name}, welcome to the room ${room}`});
-    socket.broadcast.to(room).emit('message', { user: 'admin' , text: `${name}, has joined`})
+    socket.emit('message' , {user: 'admin', text: `${user.name}, welcome to the room ${user.room}`});
+    socket.broadcast.to(user.room).emit('message', { user: 'admin' , text: `${user.name}, has joined`})
 
-    // callback()
+    socket.join(user.room);
+    callback();
   });
 
 
   socket.on('sendMessage', (message, callback) => {
-    const user = getUser(socket.id) // specific instance of the user's id
+    // const user = getUser(socket.id) // specific instance of the user's id
+    const user = getUser(socket.id);
 
-      io.to(room).emit('message', {user: name, text: message})
+    io.to(user.room).emit('message', {user: user.name, text: message})
+
+      callback()
   });
 
   socket.on('disconnect' , () => {

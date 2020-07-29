@@ -15,33 +15,57 @@ const Chat = ({location}) => {
   const [messages, setMessages] = useState([]);  // this stores all the messages in an array in state
 
 
-  // UseEffect for user joining the room
+  // ! UseEffect for user joining the room
   useEffect(() => {
     const {name, room} = queryString.parse(location.search)
     socket = io('localhost:3000');
     // setting the name and the room
     setName(name);
     setRoom(room)
-    console.log(socket)
 
-    socket.emit('join', {name, room}); // same as name: name. Sends name and room to server
+    socket.emit('join', {name, room}, () => {
+
+    }); // same as name: name. Sends name and room to server
 
     return () => {
       socket.emit('disconnect');
-
       socket.off();
     }
   }, ['localhost:3000', location.search]) // useEffect will trigger when values in array update
 
-  // UseEffect for user sending a message
+
+
+  // ! UseEffect for user sending a message
   useEffect(() => {
     socket.on('message', (message) => {
-
+      setMessages([...messages, message]);
     })
-  })
+  }, [messages])
 
+
+  // function for sending message
+  const sendMessage = (event) => {
+    event.preventDefault();
+    if (message) {
+      socket.emit('sendMessage' , message, () => setMessage(''))
+    }
+  }
+
+  console.log(message)
+  console.log(messages)
+
+
+
+
+  // ! JSX
   return (
-    <h1>Chat</h1>
+    <div>
+      <input 
+        value = {message} 
+        onChange={(event) => setMessage(event.target.value)}
+        onKeyPress={(event) => event.key === 'Enter' ? sendMessage(event) : null}
+      />  
+    </div>
   );
 };
 
