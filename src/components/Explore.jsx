@@ -122,6 +122,17 @@ const Explore = (props) => {
 					>
 						<Button variant="primary"> Find out more </Button>
 					</NavLink>
+					<NavLink
+            to={{
+              pathname: '/joinchat',
+              state: {
+                idea_id: idea.idea_id,
+                authStatus,
+              },
+            }}
+          >
+            <Button variant="secondary"> Message </Button>
+          </NavLink>
 				</Card.Body>
 			</Card>
 		);

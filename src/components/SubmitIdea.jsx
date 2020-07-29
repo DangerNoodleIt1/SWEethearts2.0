@@ -83,7 +83,7 @@ const SubmitIdea = (props) => {
       username,
     };
     // console.log('data', data);
-    await axios.post('/api/submit', data);
+    await axios.post('/api/submit', data); // making a post request with the data
     setIsSubmitted(true);
   };
 

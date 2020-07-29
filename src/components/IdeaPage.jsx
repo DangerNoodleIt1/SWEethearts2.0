@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
 import '../styles/ideapage.scss';
 import { Container, Col, Row, Button } from 'react-bootstrap';
@@ -83,14 +83,18 @@ const IdeaPage = (props) => {
             <ul>
               <li className="unstyled-li">
                 {/* TODO:CONVERT THE PROFILE PIC IN SCHEMA TO STRING */}
-                <NavLink
-                  to='/profile'
-                   ideaCreator = {creator_username}
-                   authStatus = {authStatus}
+                <Link
+                  to= {{
+                    pathname: '/profile',
+                    state: {
+                      ideaCreator: creator_username,
+                      authStatus: authStatus
+                    }
+                  }}
                 >
                   <img className="prof-pic" src={profilepic} />
                   {creator_username} (creator)
-                </NavLink>
+                </Link>
                 
               </li>
               {participants.map((user, idx) => (
@@ -133,11 +137,11 @@ const IdeaPage = (props) => {
                 )}
             </Row>
             <Row className="mx-auto">
-              <NavLink to="/explore">
+              <Link to="/explore">
                 <Button variant="primary" className="m-2">
                   Back to Explore
                 </Button>
-              </NavLink>
+              </Link>
             </Row>
           </Container>
         </Col>
