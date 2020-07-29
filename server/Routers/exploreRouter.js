@@ -16,7 +16,7 @@ router.get(
 );
 
 router.get('/:ideaID', ideaController.getOneIdea, (req, res) => {
-  // console.log('res.locals.idea', res.locals.idea);
+  console.log('res.locals.idea', res.locals.idea);
   res.json(res.locals.idea);
 });
 

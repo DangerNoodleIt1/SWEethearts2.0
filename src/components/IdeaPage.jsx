@@ -10,6 +10,8 @@ const IdeaPage = (props) => {
   const [ideaData, setIdeaData] = useState({});
   const [interested, setInterested] = useState(false);
 
+  console.log(authStatus)
+
   useEffect(() => {
     getIdea();
   }, []);
@@ -82,17 +84,14 @@ const IdeaPage = (props) => {
               <li className="unstyled-li">
                 {/* TODO:CONVERT THE PROFILE PIC IN SCHEMA TO STRING */}
                 <NavLink
-                  to={{
-                    pathname: '/profile',
-                    state: {
-                      ideaCreator: creator_username,
-                      authStatus
-                    },
-                  }}
+                  to='/profile'
+                   ideaCreator = {creator_username}
+                   authStatus = {authStatus}
                 >
                   <img className="prof-pic" src={profilepic} />
+                  {creator_username} (creator)
                 </NavLink>
-                {creator_username} (creator)
+                
               </li>
               {participants.map((user, idx) => (
                 <li key={idx} className="unstyled-li">
