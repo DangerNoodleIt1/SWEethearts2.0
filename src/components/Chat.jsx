@@ -52,6 +52,7 @@ const Chat = ({location}) => {
   useEffect(() => {
     // make axios request that will access table with all chat messages
     
+    
     // make query to table with chat messages -- filtered based off of room which is in state
 
 
