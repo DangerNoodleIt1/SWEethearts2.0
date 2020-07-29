@@ -12,6 +12,8 @@ import Messages from './Messages'
 import Input from './Input'
 import TextContainer from './TextContainer'
 
+import './css/Chat.css'
+
 let socket;
 
 const Chat = ({location}) => {
