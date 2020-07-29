@@ -20,7 +20,7 @@ ideaController.getIdeas = (req, res, next) => {
       return next({
         log: `error occurred at getIdeas middleware. error message is: ${err}`,
         status: 400,
-        message: { err: 'An error occurred' },
+        message: { err: 'An error occurred' }
       });
     }
     // console.log('results', results.rows);
@@ -42,7 +42,7 @@ ideaController.submitIdea = (req, res, next) => {
     whenEnd,
     teamNumber,
     imageURL,
-    username,
+    username
   } = req.body;
 
   const teamNumberInt = Number(teamNumber);
@@ -66,7 +66,7 @@ ideaController.submitIdea = (req, res, next) => {
       whenStart,
       whenEnd,
       teamNumberInt,
-      username,
+      username
     ];
   } else if (!whenEnd) {
     queryText1 = `INSERT INTO Ideas (name, description, why, when_start, who, image, creator_username) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING idea_id`;
@@ -77,7 +77,7 @@ ideaController.submitIdea = (req, res, next) => {
       whenStart,
       teamNumberInt,
       imageURL,
-      username,
+      username
     ];
   } else {
     queryText1 = `INSERT INTO Ideas (name, description, why, when_start, when_end, who, image, creator_username) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING idea_id`;
@@ -89,7 +89,7 @@ ideaController.submitIdea = (req, res, next) => {
       whenEnd,
       teamNumberInt,
       imageURL,
-      username,
+      username
     ];
   }
   let addedIdeaId;
@@ -99,7 +99,7 @@ ideaController.submitIdea = (req, res, next) => {
       return next({
         log: `error occurred at submitIdea middleware query1. error message is: ${err}`,
         status: 400,
-        message: { err: 'An error occurred' },
+        message: { err: 'An error occurred' }
       });
     }
     addedIdeaId = result.rows[0].idea_id;
@@ -119,7 +119,7 @@ ideaController.submitIdea = (req, res, next) => {
           return next({
             log: `error occurred at submitIdea middleware query2. error message is: ${err}`,
             status: 400,
-            message: { err: 'An error occurred' },
+            message: { err: 'An error occurred' }
           });
         }
       });
@@ -131,6 +131,7 @@ ideaController.submitIdea = (req, res, next) => {
 // middleware to get one idea
 // need to set up route for this
 ideaController.getOneIdea = async (req, res, next) => {
+  console.log(req.params);
   const id = req.params.ideaID;
   try {
     const ideasQueryText = `SELECT * FROM Ideas 
@@ -162,7 +163,24 @@ ideaController.getOneIdea = async (req, res, next) => {
     return next({
       log: `error occurred at getOneIdea middleware. error message is: ${err}`,
       status: 400,
-      message: { err: 'An error occurred' },
+      message: { err: 'An error occurred' }
+    });
+  }
+};
+
+ideaController.updateViewCount = async (req, res, next) => {
+  const id = req.params.ideaID;
+  try {
+    const queryText = `UPDATE Ideas SET view_count = view_count + 1 WHERE idea_id=${id}`;
+
+    const viewCount = await model.query(queryText);
+    console.log('VIEW COUNT CONTROLLER: ', viewCount);
+    return next();
+  } catch (err) {
+    return next({
+      log: `error occurred at updateViewCount middleware. error message is: ${err}`,
+      status: 400,
+      message: { err: 'An error occurred' }
     });
   }
 };

@@ -10,7 +10,7 @@ techController.getTechs = (req, res, next) => {
       return next({
         log: `error occurred at getTechs middleware. error message is: ${err}`,
         status: 400,
-        message: { err: 'An error occurred' },
+        message: { err: 'An error occurred' }
       });
     }
 
