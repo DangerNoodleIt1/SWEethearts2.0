@@ -15,9 +15,14 @@ router.get(
   }
 );
 
-router.get('/:ideaID', ideaController.getOneIdea, (req, res) => {
-  // console.log('res.locals.idea', res.locals.idea);
-  res.status(200).res.json(res.locals.idea);
-});
+router.get(
+  '/:ideaID',
+  ideaController.updateViewCount,
+  ideaController.getOneIdea,
+  (req, res) => {
+    // console.log('res.locals.idea', res.locals.idea);
+    res.status(200).res.json(res.locals.idea);
+  }
+);
 
 module.exports = router;
