@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+
 import './css/Join.css';
-// import { withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 
 const JoinChat = (props) => {
+
+  // console.log(props.location.state.idea_id)
+  const room = props.location.state.idea_id
   const [name, setName] = useState('');
-  const [messages, setMessages] = useState([{ oldMessages: [] }]);
 
-  //const [room, setRoom] = useState('');
-  const room = props.location.state.idea_id;
-
-  useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
-    fetch('/api/joinchat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ room })
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setMessages({ oldMessages: data });
-        console.log('FETCH MESSAGES: ', messages);
-      });
-  }, [name]);
+  // useEffect(() => {
+  //   // eslint-disable-next-line no-unused-expressions
+  //   fetch('/api/joinchat', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ room })
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setMessages({ oldMessages: data });
+  //       console.log('FETCH MESSAGES: ', messages);
+  //     });
+  // }, [name]);
 
   return (
     <div className="joinOuterContainer">

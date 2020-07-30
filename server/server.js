@@ -11,8 +11,10 @@ const signUpRouter = require('./Routers/signupRouter');
 const exploreRouter = require('./Routers/exploreRouter');
 const submitRouter = require('./Routers/submitRouter');
 const loginRouter = require('./Routers/loginRouter');
+const statusRouter = require('./Routers/statusRouter');
 const profileRouter = require('./Routers/profileRouter');
-const chatRouter = require('./Routers/chatRouter');
+const chatRouter = require('./Routers/chatRouter')
+const authController = require('./Controllers/authController');
 const flash = require('express-flash');
 const initializePassport = require('./passport');
 const passport = require('passport');
@@ -41,18 +43,17 @@ io.on('connection', (socket) => {
 
     if (error) return callback(error);
 
-    // ! socket built in methods
-    socket.emit('message', {
-      user: 'admin',
-      text: `${user.name}, welcome to the room ${user.room}`
-    });
-    socket.broadcast
-      .to(user.room)
-      .emit('message', { user: 'admin', text: `${user.name}, has joined` });
-
-    socket.join(user.room);
-    callback();
-  });
+		// ! socket built in methods
+		socket.emit('message', {
+			user: 'admin',
+			text: `${user.name}, welcome to the room ${user.room}`,
+		});
+		socket.broadcast
+			.to(user.room)
+			.emit('message', { user: 'admin', text: `${user.name}, has joined` });
+		socket.join(user.room);
+		callback();
+	});
 
   socket.on('sendMessage', (message, callback) => {
     // const user = getUser(socket.id) // specific instance of the user's id
@@ -98,6 +99,13 @@ app.use('/api/explore', exploreRouter);
 app.use('/api/submit', submitRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/joinchat', chatRouter);
+app.use('/api/loggedIn', statusRouter);
+app.get('/api/logOut', (req, res) => {
+	console.log('hit the logout route');
+	// res.status(200).send([res.locals.isLoggedIn, res.locals.user]);
+	req.logout();
+	res.sendStatus(200);
+});
 // globoal error handler
 app.use((err, req, res, next) => {
   const defaultErr = {

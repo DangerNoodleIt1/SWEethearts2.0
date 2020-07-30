@@ -8,13 +8,13 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const ProfileEdit = (props) => {
 	const { authStatus } = props;
-  const { username } = authStatus;
-  const [retrievedTechStacks, setRetrievedTechStacks] = useState([]);
+	const { username } = authStatus;
+	const [retrievedTechStacks, setRetrievedTechStacks] = useState([]);
 
-  console.log("in profile edit ", props.location.userData)
-  const {firstname, lastname, profilepic} = props.location.userData
-  
-  console.log(authStatus)
+	console.log('in profile edit ', props.location.userData);
+	const { firstname, lastname, profilepic } = props.location.userData;
+
+	console.log(authStatus);
 
 	if (props.location.authstatus) {
 		console.log('console log in profileEdit ' + props.location.authstatus);
@@ -47,7 +47,7 @@ const ProfileEdit = (props) => {
 	const handleChange = (e) => {
 		const { id, value } = e.target;
 		switch (id) {
-      case 'about':
+			case 'about':
 				setAbout(value);
 				break;
 			case 'githubhandle':
@@ -81,22 +81,21 @@ const ProfileEdit = (props) => {
 		e.preventDefault();
 
 		// convert tech stack into tech stack id
-    // const techStackID = techIDConverter(techStack);
-    // const data = { "firstname" :"seungho", "lastname" :"baek", "about" :"1", "profilepic" : "https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png", "githubhandle" :"5", "username":"seungho","linkedin":"1","personalpage":"1","experience": "1234", "occupation" : "seungho4","tech_stacks": "reactasdasd"}
-
+		// const techStackID = techIDConverter(techStack);
+		// const data = { "firstname" :"seungho", "lastname" :"baek", "about" :"1", "profilepic" : "https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png", "githubhandle" :"5", "username":"seungho","linkedin":"1","personalpage":"1","experience": "1234", "occupation" : "seungho4","tech_stacks": "reactasdasd"}
 
 		const data = {
-      firstname,
-      lastname,
-      about,
-      profilepic,
+			firstname,
+			lastname,
+			about,
+			profilepic,
 			githubhandle,
-      username ,
-      linkedin,
-      personalpage,
-      experience,
-      occupation,
-      tech_stacks: ""
+			username,
+			linkedin,
+			personalpage,
+			experience,
+			occupation,
+			tech_stacks: '',
 		};
 
 		const config = {
@@ -105,17 +104,13 @@ const ProfileEdit = (props) => {
 			},
 		};
 
-    console.log('data inside ProfileEdit ', data);
-    
+		console.log('data inside ProfileEdit ', data);
 
 		try {
-			let res = await axios.post('./api/profile',
-			JSON.stringify(data),
-			config)
+			let res = await axios.post('./api/profile', JSON.stringify(data), config);
 		} catch (e) {
-			console.log(e.response) // undefined
+			console.log(e.response); // undefined
 		}
-
 
 		// let response = await fetch(
 		// 	`http://localhost:3000/api/profile/`,
@@ -165,9 +160,7 @@ const ProfileEdit = (props) => {
 
 						<Form.Group controlId="experience">
 							<Form.Label>Experience</Form.Label>
-							<Form.Text className="text-muted">
-								Why do feel passionate about this idea?
-							</Form.Text>
+							<Form.Text className="text-muted">List your experience</Form.Text>
 							<Form.Control onChange={handleChange} type="text" />
 						</Form.Group>
 

@@ -111,9 +111,6 @@ const IdeaPage = (props) => {
 					<Row>
 						<Col>
 							<h4>{name}</h4>
-							<Container>
-								<h6>{description}</h6>
-							</Container>
 						</Col>
 					</Row>
 					<Row>
