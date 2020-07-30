@@ -97,11 +97,6 @@ app.use('/api/explore', exploreRouter);
 app.use('/api/submit', submitRouter);
 app.use('/api/profile', profileRouter);
 
-
-
-
-
-
 // globoal error handler
 app.use((err, req, res, next) => {
 	const defaultErr = {
