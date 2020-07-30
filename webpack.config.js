@@ -6,7 +6,7 @@ const config = {
   entry: ['react-hot-loader/patch', './src/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   mode: process.env.NODE_ENV,
   module: {
@@ -17,60 +17,60 @@ const config = {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
-          plugins: ['@babel/transform-runtime'],
-        },
+          plugins: ['@babel/transform-runtime']
+        }
       },
       {
         test: /\.scss?/,
         exclude: /(node_modules)/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.css$/,
         use: [
           // 2. Inject CSS into the DOM
           {
-            loader: 'style-loader',
+            loader: 'style-loader'
           },
           // 1. Convert CSS to CommonJS
           {
-            loader: 'css-loader',
-          },
-        ],
+            loader: 'css-loader'
+          }
+        ]
       },
       {
         test: /\.ts(x)?$/,
         loader: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
-          },
-        ],
-      },
-    ],
+            loader: 'file-loader'
+          }
+        ]
+      }
+    ]
   },
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
     alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
+      'react-dom': '@hot-loader/react-dom'
+    }
   },
   devServer: {
     contentBase: './dist',
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api': 'http://localhost:3000'
     },
-    historyApiFallback: true,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: `./public/index.html`,
-    }),
-  ],
+      template: `./public/index.html`
+    })
+  ]
 };
 
 module.exports = config;
