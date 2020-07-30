@@ -55,7 +55,7 @@ const Explore = (props) => {
 	const generateTech = techStack.map((tech, idx) => {
 		return (
 			<Form key={idx}>
-				<div key="checkbox" className="mb-2 mt-2 ml-2">
+				<div key="checkbox" className="mb-2 mt-2 ml-3">
 					<Form.Check type="checkbox">
 						<Form.Check.Input
 							type="checkbox"
@@ -93,14 +93,11 @@ const Explore = (props) => {
 		  })
 		: sortedIdeas;
 
+	// ! generates the actual boxes
 	const generateBoxes = filteredIdeas.map((idea, idx) => {
 		return (
-			<Card
-				key={idx}
-				style={{ width: '20rem' }}
-				className="m-3 zoom card-shadow"
-			>
-				<Card.Img className="card-img-top" src={idea.image} />
+			<Card key={idx} style={{ width: '20rem' }} className="m-3">
+				<Card.Img variant="top" src={idea.image} />
 				<Card.Body>
 					<Card.Title>{idea.name}</Card.Title>
 					<Card.Text style={{ fontWeight: 300 }}>{idea.description}</Card.Text>
@@ -123,16 +120,16 @@ const Explore = (props) => {
 						<Button variant="primary"> Find out more </Button>
 					</NavLink>
 					<NavLink
-            to={{
-              pathname: '/joinchat',
-              state: {
-                idea_id: idea.idea_id,
-                authStatus,
-              },
-            }}
-          >
-            <Button variant="secondary"> Message </Button>
-          </NavLink>
+						to={{
+							pathname: '/joinchat',
+							state: {
+								idea_id: idea.idea_id,
+								authStatus,
+							},
+						}}
+					>
+						<Button variant="secondary"> Message </Button>
+					</NavLink>
 				</Card.Body>
 			</Card>
 		);
@@ -185,7 +182,7 @@ const Explore = (props) => {
 	return response.length === 0 ? (
 		<Spinner />
 	) : (
-		<Fragment> {explorePage} </Fragment>
+		<Fragment>{explorePage}</Fragment>
 	);
 };
 
