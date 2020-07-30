@@ -47,16 +47,16 @@ authController.getProfile = async (req, res, next) => {
 
 // middeware to edit profiles (INCOMPLETE)
 authController.editProfile = async (req, res, next) => {
-	console.log('inside auth Controller ' + req.body);
+	console.log('inside auth Controller ' + req.body.firstname); // body is getting info
 	const {
-		firstName,
-		lastName,
+		firstname,
+		lastname,
 		about,
 		profilepic,
-		githubHandle,
+		githubhandle,
 		username,
 		linkedin,
-		personalPage,
+		personalpage,
 		experience,
 		occupation,
 		tech_stacks,
@@ -77,20 +77,20 @@ authController.editProfile = async (req, res, next) => {
        occupation=$10,
        tech_stacks=$11
 
-	WHERE username=$8`;
+	WHERE username=$6`;
 
 	const queryValue = [
-		firstName,
-		lastName,
+		firstname,
+		lastname,
 		about,
 		profilepic,
-		githubHandle,
+    githubhandle,
+    username,
 		linkedin,
-		personalPage,
+		personalpage,
 		experience,
 		occupation,
 		tech_stacks,
-		username,
 	];
 
 	try {

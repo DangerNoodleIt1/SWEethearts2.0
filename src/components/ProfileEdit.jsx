@@ -76,19 +76,25 @@ const ProfileEdit = (props) => {
 		e.preventDefault();
 
 		// convert tech stack into tech stack id
-		// const techStackID = techIDConverter(techStack);
-		const data = {
-			githubHandle,
-			linkedin,
-			personalPage,
-			// techStack: techStackID,
-			about,
-			occupation,
-			experience,
-			imageURL,
-			// hardcode, need a logic to pass username as prop
-			username,
-		};
+    // const techStackID = techIDConverter(techStack);
+    const data = { "firstname" :"seudsfsdfsnghoo", "lastname" :"baek", "about" :"1", "profilepic" : "https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png", "githubhandle" :"5", "username":"seungho","linkedin":"1","personalpage":"1","experience": "1234", "occupation" : "seungho4","tech_stacks": "reactasdasd"}
+
+
+
+
+
+		// const data = {
+		// 	githubHandle,
+		// 	linkedin,
+		// 	personalPage,
+		// 	// techStack: techStackID,
+		// 	about,
+		// 	occupation,
+		// 	experience,
+		// 	imageURL,
+		// 	// hardcode, need a logic to pass username as prop
+		// 	username,
+		// };
 
 		const config = {
 			headers: {
@@ -97,23 +103,25 @@ const ProfileEdit = (props) => {
 		};
 
 		console.log('data inside ProfileEdit ', data);
+		try {
+			let res = await axios.post('/api/profile',
+			JSON.stringify(data),
+			config)
+		} catch (e) {
+			console.log(e.response) // undefined
+		}
 
-		let resTest = await axios.post(
-			'http://localhost:3000/api/profile',
-			data,
-			config
-		);
 
-		let response = await fetch(
-			`http://localhost:3000/api/profile/${username}`,
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(data),
-			}
-		);
+		// let response = await fetch(
+		// 	`http://localhost:3000/api/profile/`,
+		// 	{
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 		},
+		// 		body: JSON.stringify(data),
+		// 	}
+		// );
 
 		// if (response.status === 200) {
 		//   console.log('fetch post success')

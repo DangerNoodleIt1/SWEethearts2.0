@@ -15,11 +15,8 @@ router.get('/:username', authController.getProfile, (req, res) => {
 
 // Make a post request to update the specific profile
 router.post('/', authController.editProfile, (req, res) => {
-	res.json(res.locals.userData);
+	res.status(200);
 });
 
-// router.get('/hello', (req, res) => {
-// 	res.status(205).send({ id: 'hello' });
-// });
 
 module.exports = router;
