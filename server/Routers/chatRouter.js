@@ -9,4 +9,6 @@ router.post('/', chatController.getChats, (req, res) => {
   res.status(200).json(res.locals.messages);
 });
 
+
+
 module.exports = router;
