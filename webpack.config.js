@@ -62,7 +62,8 @@ const config = {
   devServer: {
     contentBase: './dist',
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api': 'http://localhost:3000',
+      '/api/profile': 'http://localhost:3000'
     },
     historyApiFallback: true
   },

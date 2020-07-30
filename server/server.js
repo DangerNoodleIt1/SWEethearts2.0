@@ -20,9 +20,13 @@ initializePassport(passport);
 require('dotenv').config();
 const PORT = 3000;
 
+// cors update
+const cors = require('cors');
+
+app.use(cors());
+
 // socket
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
-const { BannerPlugin } = require('webpack');
 const server = http.createServer(app);
 const io = socketio(server); // Socket.io -> make server working
 
@@ -34,7 +38,7 @@ io.on('connection', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
     // get data from the client to server
     const { error, user } = addUser({ id: socket.id, name, room }); // returns either error or a user
-    console.log('SOCKET_IO: ', user);
+
     if (error) return callback(error);
 
     // ! socket built in methods
@@ -55,14 +59,12 @@ io.on('connection', (socket) => {
     const user = getUser(socket.id);
 
     io.to(user.room).emit('message', { user: user.name, text: message });
-    // const userMessage = message;
-    // const queryText = `INSERT INTO chat_messages(chats) VALUES ('${message}')`;
-    // model.query(queryText);
+
     callback();
   });
 
   socket.on('disconnect', () => {
-    console.log('User has left!!!');
+    console.log('User had left!!!');
   });
 });
 
@@ -70,6 +72,14 @@ io.on('connection', (socket) => {
  * Handle parsing request body
  */
 app.use(express.json());
+// allow cors
+// app.use(
+// 	cors({
+// 		origin: `http://localhost:8080`, // allow to server to accept request from different origin
+// 		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+// 		credentials: true, // allow session cookie from browser to pass through
+// 	})
+// );
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(

@@ -6,8 +6,10 @@ import {
 import '../styles/navigateBar.scss';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-const NavigateBar = () => {
+const NavigateBar = (props) => {
+	// make a conditional -- if props.authStatus.username exists, display one set, else another set
 	return (
 		<Navbar className="color-nav" variant="light" sticky="top">
 			{/* Leftside Nav Logo/Link */}
@@ -27,6 +29,19 @@ const NavigateBar = () => {
 			{/* Set class for Login and Signup button Nav item to `margin-left: auto;`*/}
 			<Nav className="ml-auto">
 				{/* TODO: Remove inline styling in favor of Bootstrap or separate stylesheet */}
+				<Link
+					to={{
+						pathname: '/profile',
+						state: {
+							ideaCreator: props.authStatus.username,
+							authStatus: props.authStatus,
+						},
+					}}
+				>
+					<Nav.Link style={{ color: 'white' }} href="/profile">
+						Profile
+					</Nav.Link>
+				</Link>
 
 				{/* temporary link to render submit idea page */}
 				<Link to="/submit">
@@ -55,4 +70,4 @@ const NavigateBar = () => {
 	// </Form >
 };
 
-export default NavigateBar;
+export default withRouter(NavigateBar);

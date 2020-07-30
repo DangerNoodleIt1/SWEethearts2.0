@@ -11,7 +11,7 @@ router.get(
   techController.getTechs,
   (req, res) => {
     // console.log('res.locals.ideas', res.locals.ideas);
-    res.status(200).json([res.locals.ideas, res.locals.techs]);
+    res.json([res.locals.ideas, res.locals.techs]);
   }
 );
 
