@@ -4,7 +4,9 @@ import Spinner from './Spinner';
 import '../styles/user-profile.scss';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import axios from 'axios'
 
+// We access the profile from 2 different places.
 const Profile = (props) => {
 	/*
 	 * Possible Props:
@@ -36,7 +38,7 @@ const Profile = (props) => {
 		getUser();
 	}, []);
 
-	const getUser = async () => {
+	const getUser = async () => { // getting the specific user data
 		// Get all existing user data, sending username as a parameter
 		const res = await fetch(`/api/profile/${creatorName}`);
 		// const res = await fetch(`/api/profile/seungho`);
@@ -70,11 +72,11 @@ const Profile = (props) => {
 		return <Container>Could not load user</Container>;
 	}
 
-	// if there is the user return all data associated
+  // if there is the user return all data associated. 
 	return (
 		<Container id="userProfileContainer">
 			<Row className="mb-4" id="row1">
-				<h3>{creatorName}'s Developer Profile</h3>
+				<h3>{userData.firstname}'s Developer Profile</h3>
 				<img id="profilePic" src={userData.profilepic} />
 				<Link
 					to={{
@@ -86,10 +88,12 @@ const Profile = (props) => {
 				>
 					<button>Edit Profile</button>
 				</Link>
+
 			</Row>
 			<Row id="row2">
 				<Col className="cardHeader" id="bioCard">
-					<Fragment>Bio</Fragment>
+        <Fragment>About {userData.firstname}</Fragment>
+          <h1></h1>
 				</Col>
 				<Col className="cardHeader ml-5" id="contactInfoCard">
 					<Fragment>Where else can your future teammates contact you?</Fragment>
