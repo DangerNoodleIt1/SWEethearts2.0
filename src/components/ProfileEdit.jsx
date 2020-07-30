@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import {Redirect } from "react-router-dom";
 
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
@@ -107,37 +108,13 @@ const ProfileEdit = (props) => {
 		console.log('data inside ProfileEdit ', data);
 
 		try {
-			let res = await axios.post('./api/profile', JSON.stringify(data), config);
+      let res = await axios.post('./api/profile', JSON.stringify(data), config);
+      return <Redirect to={"/"}/>
+      
 		} catch (e) {
 			console.log(e.response); // undefined
 		}
 
-		// let response = await fetch(
-		// 	`http://localhost:3000/api/profile/`,
-		// 	{
-		// 		method: 'POST',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 		body: JSON.stringify(data),
-		// 	}
-		// );
-
-		// if (response.status === 200) {
-		//   console.log('fetch post success')
-		// } else
-		//   setErrorMsg('New user could not be created - duplicate username/email');
-
-		// const res = await axios.post('/api/profile/', data, config);
-		// console.log('reached here ', res);
-		// console.log('reached after ' + JSON.stringify(res));
-		// const testInfo = await axios.get('http://localhost:3000/api/profile/hello');
-		// await axios.post(
-		// 	'http://localhost:3000/api/profile/',
-		// 	JSON.stringify(data),
-		// 	config
-		// ); // making a post request with the data
-		// setIsSubmitted(true);
 	};
 
 	return (
