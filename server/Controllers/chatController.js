@@ -5,8 +5,7 @@ const chatController = {};
 chatController.getChats = (req, res, next) => {
   console.log('BODY', req.body);
   const room = req.body.room;
-  const queryText = `SELECT messages FROM chat_messages WHERE room_id = ${room}`;
-
+  const queryText = `SELECT date, username, messages FROM chat_id_assn  INNER JOIN message_log  ON chat_id_assn.chat_id = message_log.chat_id WHERE idea_id = ${room}`
   console.log(queryText);
 
   model.query(queryText, (err, results) => {

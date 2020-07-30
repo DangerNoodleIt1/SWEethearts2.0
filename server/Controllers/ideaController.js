@@ -124,6 +124,34 @@ ideaController.submitIdea = (req, res, next) => {
         }
       });
     }
+
+    // create new chat room associated with idea
+    const queryText3 = `INSERT INTO chat_id_assn (idea_id) VALUES (${addedIdeaId}) RETURNING chat_id;`
+    await model.query(queryText3, (err) => {
+      if (err) {
+        console.log(err);
+        return next({
+          log: `error occurred at submitIdea middleware query3. error message is: ${err}`,
+          status: 400,
+          message: { err: 'An error occurred' }
+        });
+      }
+    });
+    const chat_id = result.rows[0].chat_id;
+
+    // add creating user to the chat room
+    const queryText4 = `INSERT INTO chat_user_assn (chat_id, username)  VALUES (${chat_id}, ${username});`
+    await model.query(queryText4, (err) => {
+      if (err) {
+        console.log(err);
+        return next({
+          log: `error occurred at submitIdea middleware query3. error message is: ${err}`,
+          status: 400,
+          message: { err: 'An error occurred' }
+        });
+      }
+    });
+
     return next();
   });
 };

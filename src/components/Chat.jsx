@@ -30,7 +30,18 @@ const Chat = ({ location }) => {
     // setting the name and the room
     setName(name);
     setRoom(room);
-    setMessages(location.state.oldMessages[0].messages);
+    for (let i = 0; i <location.state.oldMessages.length; i++){
+      location.state.oldMessages[i].user = location.state.oldMessages[i].user_id
+      location.state.oldMessages[i].text = location.state.oldMessages[i].messages
+    }
+    console.log('CHAT 2: ', location.state.oldMessages);
+    // const {user_id, date, messages} = location.state.oldMessages
+    setMessages(location.state.oldMessages);
+    
+
+    
+
+
 
     socket.emit('join', { name, room }, () => {}); // same as name: name. Sends name and room to server
 
