@@ -8,4 +8,8 @@ router.post('/', passport.authenticate('local'), (req, res) => {
 	res.status(200).send('logIn success');
 });
 
+router.get('/hello', (req, res) => {
+	res.status(205).send({ id: 'hello' });
+});
+
 module.exports = router;

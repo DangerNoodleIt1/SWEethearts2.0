@@ -21,6 +21,7 @@ const Explore = (props) => {
 			creator_username: '',
 			image: '',
 			techstacks: [],
+			view_count: 0,
 		},
 	]);
 
@@ -100,6 +101,9 @@ const Explore = (props) => {
 				<Card.Img variant="top" src={idea.image} />
 				<Card.Body>
 					<Card.Title>{idea.name}</Card.Title>
+					<Card.Text style={{ fontWeight: 200 }}>
+						Idea Views: {idea.view_count}
+					</Card.Text>
 					<Card.Text style={{ fontWeight: 300 }}>{idea.description}</Card.Text>
 					<Card.Text style={{ fontSize: 12, fontStyle: 'italic' }}>
 						<span style={{ fontSize: 13, fontWeight: 'bold' }}>
