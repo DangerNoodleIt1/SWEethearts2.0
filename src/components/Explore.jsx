@@ -97,7 +97,11 @@ const Explore = (props) => {
 	// ! generates the actual boxes
 	const generateBoxes = filteredIdeas.map((idea, idx) => {
 		return (
-			<Card key={idx} style={{ width: '20rem' }} className="m-3">
+			<Card
+				key={idx}
+				style={{ width: '20rem' }}
+				className="m-3 zoom card-shadow"
+			>
 				<Card.Img variant="top" src={idea.image} />
 				<Card.Body>
 					<Card.Title>{idea.name}</Card.Title>
