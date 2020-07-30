@@ -28,9 +28,7 @@ const Chat = ({ location }) => {
 		// setting the name and the room
 		setName(name);
 		setRoom(room);
-
 		socket.emit('join', { name, room }, () => {}); // same as name: name. Sends name and room to server
-
 		return () => {
 			socket.emit('disconnect');
 			socket.off();
@@ -40,25 +38,29 @@ const Chat = ({ location }) => {
 
   // ! UseEffect to populate messages
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
+    const { name, room } = queryString.parse(location.search);
+    console.log("this is room " + room)
     // create the fetch request
-    setMessages([...messages, {user: "usserr", text: "hello this is text" }])
-    // fetch('/api/joinchat', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ room })
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setMessages({ ...messages, data });
-    //     console.log('FETCH MESSAGES: ', messages);
-    //   });
-  }, [name]);
+    fetch('/api/joinchat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({room})
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        for (let i = 0; i < data.length; i++){
+          data[i].user = data[i].username
+          data[i].text = data[i].messages
+        }
+        console.log("this is data: " , data)
+        setMessages(data);
+      });
+  }, []);
 
 
-	// ! UseEffect for user sending a message
+	// ! UseEffect for user sending a message. also send each message to hte database
 	useEffect(() => {
 		socket.on('message', (message) => {
 			setMessages([...messages, message]);
@@ -74,7 +76,7 @@ const Chat = ({ location }) => {
 	};
 
 	console.log(message);
-	console.log(messages);
+	console.log("this is end result message " + messages);
 
 	// ! JSX
 	return (
