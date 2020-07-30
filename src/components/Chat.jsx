@@ -35,7 +35,28 @@ const Chat = ({ location }) => {
 			socket.emit('disconnect');
 			socket.off();
 		};
-	}, ['localhost:3000', location.search]); // useEffect will trigger when values in array update
+  }, ['localhost:3000', location.search]); // useEffect will trigger when values in array update
+  
+
+  // ! UseEffect to populate messages
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    // create the fetch request
+    setMessages([...messages, {user: "usserr", text: "hello this is text" }])
+    // fetch('/api/joinchat', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({ room })
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setMessages({ ...messages, data });
+    //     console.log('FETCH MESSAGES: ', messages);
+    //   });
+  }, [name]);
+
 
 	// ! UseEffect for user sending a message
 	useEffect(() => {

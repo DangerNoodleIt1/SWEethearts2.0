@@ -8,7 +8,6 @@ const JoinChat = (props) => {
 
   // console.log(props.location.state.idea_id)
   const room = props.location.state.idea_id
-
   const [name, setName] = useState('');
   // const [room, setRoom] = useState(''); 
 
