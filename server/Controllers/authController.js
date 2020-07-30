@@ -5,7 +5,7 @@ const authController = {};
 
 authController.loggedIn = async (req, res, next) => {
 	const userPassport = req.user;
-	console.log(req.session);
+
 	if (userPassport) {
 		res.locals.isLoggedIn = { isLoggedIn: true };
 		res.locals.user = userPassport.username;
@@ -19,8 +19,6 @@ authController.loggedIn = async (req, res, next) => {
 
 // create logout button to hit middleware, when logged out, will set isLoggedIn: false
 authController.logOut = async (req, res, next) => {
-	console.log('inside the authController');
-
 	req.user = undefined;
 	res.locals.isLoggedIn = { isLoggedIn: false };
 	res.locals.user = '';
