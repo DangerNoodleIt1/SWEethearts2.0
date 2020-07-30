@@ -82,13 +82,15 @@ const Profile = (props) => {
 					to={{
 						pathname: '/editprofile',
 						state: {
-							authStatus: authStatus,
-						},
+              authStatus: authStatus,
+              
+            },
+            userData: userData
 					}}
 				>
 					<button>Edit Profile</button>
 				</Link>
-          About Anthony: {userData.about}
+          About {userData.firstname}: {userData.about}
 			</Row>
       <Row>
         

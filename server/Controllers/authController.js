@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const model = require('../Models/model.js');
 
+
 const authController = {};
 
 authController.register = async (req, res, next) => {
@@ -107,4 +108,4 @@ authController.editProfile = async (req, res, next) => {
 	}
 };
 
-module.exports = authController;
+module.exports = authController

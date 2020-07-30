@@ -8,8 +8,13 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const ProfileEdit = (props) => {
 	const { authStatus } = props;
-	const { username } = authStatus;
-	const [retrievedTechStacks, setRetrievedTechStacks] = useState([]);
+  const { username } = authStatus;
+  const [retrievedTechStacks, setRetrievedTechStacks] = useState([]);
+
+  console.log("in profile edit ", props.location.userData)
+  const {firstname, lastname, profilepic} = props.location.userData
+  
+  console.log(authStatus)
 
 	if (props.location.authstatus) {
 		console.log('console log in profileEdit ' + props.location.authstatus);
@@ -81,10 +86,10 @@ const ProfileEdit = (props) => {
 
 
 		const data = {
-      firstname: "anthony",
-      lastname: "Lin",
+      firstname,
+      lastname,
       about,
-      profilepic: "https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png",
+      profilepic,
 			githubhandle,
       username ,
       linkedin,
