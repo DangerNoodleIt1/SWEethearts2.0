@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './css/Join.css';
-import {withRouter} from "react-router"
+import { withRouter } from 'react-router';
 
 const JoinChat = (props) => {
 

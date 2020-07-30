@@ -1,8 +1,31 @@
 const bcrypt = require('bcrypt');
 const model = require('../Models/model.js');
 
-
 const authController = {};
+
+authController.loggedIn = async (req, res, next) => {
+	const userPassport = req.user;
+	console.log(req.session);
+	if (userPassport) {
+		res.locals.isLoggedIn = { isLoggedIn: true };
+		res.locals.user = userPassport.username;
+
+		next();
+	} else {
+		res.locals.isLoggedIn = { isLoggedIn: false };
+		next();
+	}
+};
+
+// create logout button to hit middleware, when logged out, will set isLoggedIn: false
+authController.logOut = async (req, res, next) => {
+	console.log('inside the authController');
+
+	req.user = undefined;
+	res.locals.isLoggedIn = { isLoggedIn: false };
+	res.locals.user = '';
+	next();
+};
 
 authController.register = async (req, res, next) => {
 	const { username, password, email, firstname, lastname } = req.body;
@@ -50,8 +73,8 @@ authController.getProfile = async (req, res, next) => {
 authController.editProfile = async (req, res, next) => {
 	console.log('inside auth Controller ' + req.body.firstname); // body is getting info
 	const {
-    firstname,
-    lastname,
+		firstname,
+		lastname,
 		about,
 		profilepic,
 		githubhandle,
@@ -65,7 +88,7 @@ authController.editProfile = async (req, res, next) => {
 
 	console.log('we are here');
 
-  // Sets based off of the username
+	// Sets based off of the username
 	const queryText = `UPDATE Users
   SET firstname=$1,
       lastname=$2,
@@ -82,12 +105,12 @@ authController.editProfile = async (req, res, next) => {
 	WHERE username=$6`;
 
 	const queryValue = [
-    firstname,
-    lastname,
+		firstname,
+		lastname,
 		about,
 		profilepic,
-    githubhandle,
-    username,
+		githubhandle,
+		username,
 		linkedin,
 		personalpage,
 		experience,
@@ -108,4 +131,4 @@ authController.editProfile = async (req, res, next) => {
 	}
 };
 
-module.exports = authController
+module.exports = authController;

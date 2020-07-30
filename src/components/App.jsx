@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Landing from './Landing.jsx';
 import Explore from './Explore.jsx';
 import Login from './Login.jsx';
@@ -10,16 +10,27 @@ import SubmitIdea from './SubmitIdea';
 import ProfileEdit from './ProfileEdit';
 import Chat from './Chat';
 import JoinChat from './JoinChat';
+import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-
-
 
 const App = () => {
 	const [authStatus, setAuthStatus] = useState({
 		isLoggedIn: false,
 		username: '',
 	});
+
+	useEffect(() => {
+		const fetchLoggedIn = async () => {
+			const isLogged = await axios.get('/api/loggedIn');
+			console.log('isLogged', isLogged);
+			setAuthStatus({
+				isLoggedIn: isLogged.data[0].isLoggedIn,
+				username: isLogged.data[1],
+			});
+		};
+		fetchLoggedIn();
+	}, []);
 
 	return (
 		<Router>

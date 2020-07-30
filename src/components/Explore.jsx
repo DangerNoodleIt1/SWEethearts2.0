@@ -56,7 +56,7 @@ const Explore = (props) => {
 	const generateTech = techStack.map((tech, idx) => {
 		return (
 			<Form key={idx}>
-				<div key="checkbox" className="mb-2 mt-2 ml-2">
+				<div key="checkbox" className="mb-2 mt-2 ml-3">
 					<Form.Check type="checkbox">
 						<Form.Check.Input
 							type="checkbox"
@@ -94,6 +94,7 @@ const Explore = (props) => {
 		  })
 		: sortedIdeas;
 
+	// ! generates the actual boxes
 	const generateBoxes = filteredIdeas.map((idea, idx) => {
 		return (
 			<Card
@@ -101,7 +102,7 @@ const Explore = (props) => {
 				style={{ width: '20rem' }}
 				className="m-3 zoom card-shadow"
 			>
-				<Card.Img className="card-img-top" src={idea.image} />
+				<Card.Img variant="top" src={idea.image} />
 				<Card.Body>
 					<Card.Title>{idea.name}</Card.Title>
 					<Card.Text style={{ fontWeight: 200 }}>
@@ -189,7 +190,7 @@ const Explore = (props) => {
 	return response.length === 0 ? (
 		<Spinner />
 	) : (
-		<Fragment> {explorePage} </Fragment>
+		<Fragment>{explorePage}</Fragment>
 	);
 };
 

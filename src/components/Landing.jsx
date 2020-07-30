@@ -17,19 +17,6 @@ const Landing = ({ history }) => {
 	return (
 		<div>
 			<Container fluid className="container mt-4">
-				{/* <div className="mt-5">
-				<h1 className="d-flex justify-content-center">
-					{' '}
-					Welcome to Scratch Project{' '}
-				</h1>
-				<br />
-				<h2 className="mb-5 d-flex justify-content-center">
-					{' '}
-					A place where developers make their dreams come true{' '}
-				</h2>
-				<br />
-			</div> */}
-
 				<div>
 					<p>
 						<Carousel className="mt-2 d-flex justify-content-center ">
