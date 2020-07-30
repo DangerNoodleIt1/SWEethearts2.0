@@ -46,16 +46,9 @@ const JoinChat = (props) => {
             onChange={(event) => setRoom(event.target.value)}
           /> */}
         </div>
-        <Link
-          onClick={(e) => (!name || !room ? e.preventDefault() : null)}
-          to={{
-            pathname: `/chat?name=${name}&room=${room}`,
-            state: messages
-          }}
-        >
-          <button className={'button mt-20'} type="submit">
-            Sign In
-          </button>
+        <Link onClick={e => (!name || !room) ? e.preventDefault() : null} 
+          to={`/chat?name=${name}&room=${room}`}>
+          <button className={'button mt-20'} type="submit">Sign In</button>
         </Link>
       </div>
     </div>
