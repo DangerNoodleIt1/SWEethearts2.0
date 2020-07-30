@@ -4,7 +4,7 @@ import Spinner from './Spinner';
 import '../styles/user-profile.scss';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import axios from 'axios'
+import axios from 'axios';
 
 // We access the profile from 2 different places.
 const Profile = (props) => {
@@ -19,6 +19,7 @@ const Profile = (props) => {
 	// Destructure currently authenticated user's username from authStatus
 	let { username } = authStatus;
 
+	console.log(authStatus);
 	// Initialize creator name-to-display to currently authenticated user
 	let creatorName = ideaCreator;
 
@@ -33,14 +34,15 @@ const Profile = (props) => {
 	// Set up user data to display on Profile
 	const [userData, setUserData] = useState({});
 
-	// componentDidMount() functional equivalent
+	//functional equivalent
 	useEffect(() => {
 		getUser();
 	}, []);
 
-	const getUser = async () => { // getting the specific user data
+	const getUser = async () => {
+		// getting the specific user data
 		// Get all existing user data, sending username as a parameter
-		const res = await fetch(`/api/profile/${creatorName}`);
+		const res = await fetch(`/api/profile/${username}`);
 		// const res = await fetch(`/api/profile/seungho`);
 
 		// Expect in response an object with all User table column properties
@@ -72,7 +74,7 @@ const Profile = (props) => {
 		return <Container>Could not load user</Container>;
 	}
 
-  // if there is the user return all data associated. 
+	// if there is the user return all data associated.
 	return (
 		<Container id="userProfileContainer">
 			<Row className="mb-4" id="row1">
@@ -82,19 +84,20 @@ const Profile = (props) => {
 					to={{
 						pathname: '/editprofile',
 						state: {
-              authStatus: authStatus,
-              
-            },
-            userData: userData
+							authStatus: authStatus,
+						},
+						userData: userData,
 					}}
 				>
 					<button>Edit Profile</button>
 				</Link>
-          About {userData.firstname}: {userData.about}
 			</Row>
-      <Row>
-        
-      </Row>
+			<Row>
+				About {userData.firstname}: {userData.about}
+			</Row>
+			<Row>Experience: {userData.experience}</Row>
+			<Row>Github Handle: {userData.githubhandle}</Row>
+			<Row>Linkedin Handle: {userData.linkedin}</Row>
 			<Row id="row2">
 				{/* <Col className="cardHeader" id="bioCard">
         <Fragment>About {userData.firstname}</Fragment>
