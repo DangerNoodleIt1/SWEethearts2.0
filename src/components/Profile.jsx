@@ -88,13 +88,15 @@ const Profile = (props) => {
 				>
 					<button>Edit Profile</button>
 				</Link>
-
+          About Anthony: {userData.about}
 			</Row>
+      <Row>
+        
+      </Row>
 			<Row id="row2">
-				<Col className="cardHeader" id="bioCard">
+				{/* <Col className="cardHeader" id="bioCard">
         <Fragment>About {userData.firstname}</Fragment>
-          <h1></h1>
-				</Col>
+				</Col> */}
 				<Col className="cardHeader ml-5" id="contactInfoCard">
 					<Fragment>Where else can your future teammates contact you?</Fragment>
 				</Col>

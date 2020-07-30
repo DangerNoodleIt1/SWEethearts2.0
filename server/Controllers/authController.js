@@ -49,8 +49,8 @@ authController.getProfile = async (req, res, next) => {
 authController.editProfile = async (req, res, next) => {
 	console.log('inside auth Controller ' + req.body.firstname); // body is getting info
 	const {
-		firstname,
-		lastname,
+    firstname,
+    lastname,
 		about,
 		profilepic,
 		githubhandle,
@@ -64,10 +64,11 @@ authController.editProfile = async (req, res, next) => {
 
 	console.log('we are here');
 
+  // Sets based off of the username
 	const queryText = `UPDATE Users
-	SET  firstname=$1,
-			 lastname=$2,
-			 about=$3,
+  SET firstname=$1,
+      lastname=$2,
+      about=$3,
 			 profilepic=$4,
        githubhandle=$5,
        username = $6,
@@ -80,8 +81,8 @@ authController.editProfile = async (req, res, next) => {
 	WHERE username=$6`;
 
 	const queryValue = [
-		firstname,
-		lastname,
+    firstname,
+    lastname,
 		about,
 		profilepic,
     githubhandle,

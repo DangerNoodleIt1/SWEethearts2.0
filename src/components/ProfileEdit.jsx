@@ -14,9 +14,9 @@ const ProfileEdit = (props) => {
 	if (props.location.authstatus) {
 		console.log('console log in profileEdit ' + props.location.authstatus);
 	}
-	const [githubHandle, setGithub] = useState('');
+	const [githubhandle, setGithub] = useState('');
 	const [linkedin, setLink] = useState('');
-	const [personalPage, setPersonPage] = useState('');
+	const [personalpage, setPersonPage] = useState('');
 	const [about, setAbout] = useState('');
 	// const [tech, setTechStack] = useState([]);
 	const [occupation, setOccupation] = useState('');
@@ -42,17 +42,17 @@ const ProfileEdit = (props) => {
 	const handleChange = (e) => {
 		const { id, value } = e.target;
 		switch (id) {
-			case 'githubHandle':
+      case 'about':
+				setAbout(value);
+				break;
+			case 'githubhandle':
 				setGithub(value);
 				break;
-			case 'linkedIn':
+			case 'linkedin':
 				setLink(value);
 				break;
-			case 'personalPage':
+			case 'personalpage':
 				setPersonPage(value);
-				break;
-			case 'about':
-				setAbout(value);
 				break;
 			case 'occupation':
 				setOccupation(value);
@@ -60,7 +60,7 @@ const ProfileEdit = (props) => {
 			case 'experience':
 				setExperience(value);
 				break;
-			case 'uploadImage':
+			case 'profilepic':
 				setImageURL(value);
 				break;
 			default:
@@ -77,24 +77,22 @@ const ProfileEdit = (props) => {
 
 		// convert tech stack into tech stack id
     // const techStackID = techIDConverter(techStack);
-    const data = { "firstname" :"seudsfsdfsnghoo", "lastname" :"baek", "about" :"1", "profilepic" : "https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png", "githubhandle" :"5", "username":"seungho","linkedin":"1","personalpage":"1","experience": "1234", "occupation" : "seungho4","tech_stacks": "reactasdasd"}
+    // const data = { "firstname" :"seungho", "lastname" :"baek", "about" :"1", "profilepic" : "https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png", "githubhandle" :"5", "username":"seungho","linkedin":"1","personalpage":"1","experience": "1234", "occupation" : "seungho4","tech_stacks": "reactasdasd"}
 
 
-
-
-
-		// const data = {
-		// 	githubHandle,
-		// 	linkedin,
-		// 	personalPage,
-		// 	// techStack: techStackID,
-		// 	about,
-		// 	occupation,
-		// 	experience,
-		// 	imageURL,
-		// 	// hardcode, need a logic to pass username as prop
-		// 	username,
-		// };
+		const data = {
+      firstname: "anthony",
+      lastname: "Lin",
+      about,
+      profilepic: "https://www.eguardtech.com/wp-content/uploads/2018/08/Network-Profile.png",
+			githubhandle,
+      username ,
+      linkedin,
+      personalpage,
+      experience,
+      occupation,
+      tech_stacks: ""
+		};
 
 		const config = {
 			headers: {
@@ -102,9 +100,11 @@ const ProfileEdit = (props) => {
 			},
 		};
 
-		console.log('data inside ProfileEdit ', data);
+    console.log('data inside ProfileEdit ', data);
+    
+
 		try {
-			let res = await axios.post('/api/profile',
+			let res = await axios.post('./api/profile',
 			JSON.stringify(data),
 			config)
 		} catch (e) {
@@ -188,7 +188,7 @@ const ProfileEdit = (props) => {
 						</Form.Group>
 					</Col>
 					<Col md={6}>
-						<Form.Group controlId="uploadImage">
+						<Form.Group controlId="profilepic">
 							<Form.Label>Upload Profile Image: </Form.Label>
 							<Form.Text className="text-muted">
 								for now, put a image source url
@@ -196,7 +196,7 @@ const ProfileEdit = (props) => {
 							<Form.Control onChange={handleChange} size="lg" type="text" />
 						</Form.Group>
 
-						<Form.Group controlId="githubHandle">
+						<Form.Group controlId="githubhandle">
 							<Form.Label>Github</Form.Label>
 							<Form.Text className="text">Github</Form.Text>
 							<Form.Control onChange={handleChange} type="text" />
@@ -208,7 +208,7 @@ const ProfileEdit = (props) => {
 							</Form.Text>
 							<Form.Control onChange={handleChange} type="text" />
 						</Form.Group>
-						<Form.Group controlId="personalPage">
+						<Form.Group controlId="personalpage">
 							<Form.Label>Personal Page</Form.Label>
 							<Form.Text className="text">
 								Enter your Personal website
