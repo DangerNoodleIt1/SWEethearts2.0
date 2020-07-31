@@ -13,7 +13,7 @@ const ProfileEdit = (props) => {
 	const [retrievedTechStacks, setRetrievedTechStacks] = useState([]);
 
 	console.log('in profile edit ', props.location.userData);
-	const { firstname, lastname, profilepic } = props.location.userData;
+	const { firstname, lastname } = props.location.userData;
 
 	console.log(authStatus);
 
@@ -27,7 +27,7 @@ const ProfileEdit = (props) => {
 	// const [tech, setTechStack] = useState([]);
 	const [occupation, setOccupation] = useState('');
 	const [experience, setExperience] = useState('');
-	const [imageURL, setImageURL] = useState('');
+	const [profilepic, setImageURL] = useState('');
 	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	// useEffect(() => {
@@ -141,11 +141,11 @@ const ProfileEdit = (props) => {
 							<Form.Control onChange={handleChange} type="text" />
 						</Form.Group>
 
-						<Form.Group controlId="tech">
+						{/* <Form.Group controlId="tech">
 							<Form.Label>Tech Stack</Form.Label>
 							<Form.Text className="text-muted">
 								What technologies do you use?
-							</Form.Text>
+							</Form.Text> */}
 							{/* <Typeahead
 							// id="techStacks"
 							// labelKey="name"
@@ -154,7 +154,7 @@ const ProfileEdit = (props) => {
 							// options={retrievedTechStacks}
 							// selected={techStack}
 							/> */}
-						</Form.Group>
+						{/* </Form.Group> */}
 
 						<Form.Group controlId="occupation">
 							<Form.Label>Occupation</Form.Label>

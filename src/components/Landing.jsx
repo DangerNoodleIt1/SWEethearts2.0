@@ -27,9 +27,9 @@ const Landing = ({ history }) => {
 									alt="First slide"
 								/>
 								<Carousel.Caption>
-									<h3>First slide label</h3>
+									<h3>Innovation Strikes</h3>
 									<p>
-										Nulla vitae elit libero, a pharetra augue mollis interdum.
+										You have an idea for the next great app.
 									</p>
 								</Carousel.Caption>
 							</Carousel.Item>
@@ -41,9 +41,9 @@ const Landing = ({ history }) => {
 								/>
 
 								<Carousel.Caption>
-									<h3>Second slide label</h3>
+									<h3>Assemble Your Team</h3>
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Connect with other developers interested in your idea.
 									</p>
 								</Carousel.Caption>
 							</Carousel.Item>
@@ -55,10 +55,9 @@ const Landing = ({ history }) => {
 								/>
 
 								<Carousel.Caption>
-									<h3>Third slide label</h3>
+									<h3>Start Building</h3>
 									<p>
-										Praesent commodo cursus magna, vel scelerisque nisl
-										consectetur.
+										Bring your idea to life.
 									</p>
 								</Carousel.Caption>
 							</Carousel.Item>
