@@ -101,7 +101,9 @@ const Explore = (props) => {
         style={{ width: '20rem' }}
         className="m-3 zoom card-shadow"
       >
+        <div className="img-hover-zoom">
         <Card.Img className="card-img-top" src={idea.image} />
+        </div>
         <Card.Body>
           <Card.Title>{idea.name}</Card.Title>
           <Card.Text style={{ fontWeight: 200 }}>

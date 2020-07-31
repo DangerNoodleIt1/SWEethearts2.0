@@ -28,11 +28,11 @@ const NavigateBar = (props) => {
 			<Link to="/">
 				<Navbar.Brand>
 					<img
-						src='/../public/img/codev_text_logo.png'
+						src='https://codev.com/wp-content/uploads/2017/07/codev_logo_red_400.png'
 						width="120"
 						height="40"
 						className="d-inline-block align-top"
-						alt="React Bootstrap logo"
+						alt="React Bootstrap Logo"
 					/>
 				</Navbar.Brand>
 			</Link>
@@ -80,11 +80,11 @@ const NavigateBar = (props) => {
 			<Link to="/">
 				<Navbar.Brand>
 					<img
-						src="https://lh3.googleusercontent.com/proxy/j6HcrHgt5cNcPTvZml7GPHb0br479NLyNnyxEed1uPrrKYPSeGNojpFSfevmDyx12B6vn0K7mihZLttFU1FmeT8pmUHQ8E_Rq0WVFhQTLPUmcyDp-vjYSg"
-						width="30"
-						height="30"
+						src='https://codev.com/wp-content/uploads/2017/07/codev_logo_red_400.png'
+						width="120"
+						height="40"
 						className="d-inline-block align-top"
-						alt="React Bootstrap logo"
+						alt="React Bootstrap Logo"
 					/>
 				</Navbar.Brand>
 			</Link>
