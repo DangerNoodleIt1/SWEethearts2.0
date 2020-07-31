@@ -54,7 +54,7 @@ const Chat = ({ location }) => {
           data[i].user = data[i].username
           data[i].text = data[i].messages
         }
-        console.log("this is data: " , data)
+        console.log("this is FETCH RESPONSE: " , data)
         setMessages(data);
       });
   }, []);

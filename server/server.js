@@ -58,8 +58,26 @@ io.on('connection', (socket) => {
   socket.on('sendMessage', (message, callback) => {
     // const user = getUser(socket.id) // specific instance of the user's id
     const user = getUser(socket.id);
+    console.log("this is the username " + user.name)
+    console.log(message)
+    console.log("this is the room " +user.room)
+
+    const roomQuery = parseInt(user.room)
+    const nameQuery = user.name
+    // const messageQuery = user.message;
 
     io.to(user.room).emit('message', { user: user.name, text: message });
+
+    // TODO: create query to add message to the database
+    const queryText = `INSERT INTO message_log (chat_id, idea_id, username, messages)
+    VALUES (${roomQuery},${roomQuery}, '${nameQuery}', '${message}')`
+
+    // execute the query
+    model.query(queryText, err => {
+      if (err) {
+        console.log(err);
+      }
+    });
 
     callback();
   });

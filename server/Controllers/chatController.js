@@ -2,10 +2,14 @@ const model = require('../Models/model.js');
 
 const chatController = {};
 
+
+// we need to get the chatt messages based on the room number, not the chat id
 chatController.getChats = (req, res, next) => {
   console.log('BODY', req.body);
   const room = req.body.room;
-  const queryText = `SELECT date, username, messages FROM chat_id_assn  INNER JOIN message_log  ON chat_id_assn.chat_id = message_log.chat_id WHERE idea_id = ${room}`
+  console.log("this is the room, " + room)
+  // const SELECT * FROM "public"."message_log" LIMIT 100
+  const queryText = `SELECT date, username, messages FROM message_log WHERE idea_id = ${room}`
   console.log(queryText);
 
   model.query(queryText, (err, results) => {
